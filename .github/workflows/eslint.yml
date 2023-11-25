@@ -63,7 +63,7 @@ jobs:
         run: |
           cd monorepo/frontend
           pnpm install
-          eslint --ext .js,.vue -f checkstyle src/ | reviewdog -f=checkstyle -name="eslint" -reporter=github-pr-check
+          pnpm run lint:checkstyle | reviewdog -f=checkstyle -name="eslint" -reporter=github-pr-check
 #      - name: Build with vite
 #        run: |
 #          cd monorepo/frontend
