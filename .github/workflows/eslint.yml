@@ -54,7 +54,9 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        run: pnpm install --prefix ./monorepo/frontend
+        run: |
+          pnpm install --prefix ./monorepo/frontend
+          npm -g install eslint
       - name: Run eslint
         uses: reviewdog/action-eslint@v1
         with:
