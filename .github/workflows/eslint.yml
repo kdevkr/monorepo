@@ -5,8 +5,8 @@ on:
   pull_request:
 
 jobs:
-  checks:
-    name: Checks:eslint
+  eslint:
+    name: eslint
     runs-on: ubuntu-latest # ubuntu-22.04
 
     strategy:
@@ -56,7 +56,7 @@ jobs:
       - name: Install dependencies
         run: |
           pnpm install --prefix ./monorepo/frontend
-          pnpm run build
+          pnpm run build --prefix ./monorepo/frontend
           npm -g install eslint
       - name: Run eslint
         uses: reviewdog/action-eslint@v1
