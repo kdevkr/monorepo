@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint --ext .js,.vue ./src"
+    "lint": "eslint --fix --ext .js,.vue ./src"
   },
   "dependencies": {
     "eslint": "^8.54.0",
