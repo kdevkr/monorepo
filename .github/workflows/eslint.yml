@@ -62,5 +62,5 @@ jobs:
         uses: reviewdog/action-eslint@v1
         with:
           reporter: github-pr-check
-          workdir: frontend
+          workdir: monorepo/frontend
           eslint_flags: "--ext .js,.vue ./src"
