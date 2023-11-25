@@ -64,6 +64,7 @@ jobs:
 #        run: pnpm run build
       - name: install eslint
         run: |
+          cd ./monorepo/frontend
           pnpm -g install eslint
           pwd
           ls -l
@@ -71,4 +72,4 @@ jobs:
         uses: reviewdog/action-eslint@v1
         with:
           reporter: github-pr-check
-          eslint_flags: "./monorepo/frontend"
+          eslint_flags: "./monorepo/frontend/src"
