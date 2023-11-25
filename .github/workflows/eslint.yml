@@ -64,9 +64,7 @@ jobs:
       - name: Install eslint
         run: pnpm -g install eslint
       - name: eslint with reviewdog
-        uses: reviewdog/action-eslint@v1
+        uses: reviewdog/action-eslint@v1.16.1
         with:
           reporter: github-pr-review
-          eslint_flags: "-c ./monorepo/frontend/.eslintrc.cjs monorepo/frontend/src/ --ext .js,.vue"
-          level: error
-          filter_mode: nofilter
+          eslint_flags: "-c ./monorepo/frontend/.eslintrc.cjs ./monorepo/frontend/src/ --ext .js,.vue"
