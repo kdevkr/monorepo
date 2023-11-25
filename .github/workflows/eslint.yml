@@ -19,6 +19,15 @@ jobs:
       ###########################################
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          repository: kdevkr/platform
+          token: ${{ secrets.PLATFORM_TOKEN }}
+          ref: main
+      - name: Checkout submodules
+        run: |
+          git submodule update --init monorepo
+          cd monorepo/
+          git checkout ${{ github.event.pull_request.head.sha }}
 
       ###########################################
       ## Node
