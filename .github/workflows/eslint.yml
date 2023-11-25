@@ -71,10 +71,8 @@ jobs:
 #        run: pnpm run build
       - name: install eslint
         run: |
-          npx --no-install -c 'eslint --version'
           cd ./monorepo/frontend
-          pwd
-          ls -l
+          pnpm install -g eslint
       - name: eslint with reviewdog
         uses: reviewdog/action-eslint@v1
         with:
