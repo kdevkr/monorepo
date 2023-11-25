@@ -59,6 +59,7 @@ jobs:
         run: |
           cd monorepo/frontend
           pnpm install
+          pnpm run lint
 #      - name: Build with vite
 #        run: pnpm run build
       - name: Install eslint
