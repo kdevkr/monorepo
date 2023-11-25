@@ -1,0 +1,58 @@
+name: Checkout
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  checks:
+    name: Checks
+    runs-on: ubuntu-latest # ubuntu-22.04
+
+    strategy:
+      matrix:
+        java: [17]
+
+    steps:
+      ###########################################
+      ## Checkout
+      ###########################################
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          repository: kdevkr/platform
+          token: ${{ secrets.PLATFORM_TOKEN }}
+          ref: main
+      - name: Checkout submodules
+        run: |
+          git submodule update --init monorepo
+          cd monorepo/
+          git checkout ${GITHUB_REF##*/}
+
+      ###########################################
+      ## Java
+      ###########################################
+      - name: Set up JDK ${{ matrix.java }}
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin # (https://github.com/marketplace/actions/setup-java-jdk#supported-distributions)
+          java-version: ${{ matrix.java }}
+          architecture: x64
+          cache: "gradle"
+      - name: Build with Gradle
+        run: |
+          cd backend/
+          chmod +x ./gradlew
+          ./gradlew build -x test
+
+      ###########################################
+      ## Checkstyle
+      ###########################################
+      - name: Run checkstyle
+        uses: nikitasavinov/checkstyle-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: "github-pr-check"
+          tool_name: "reviewdog"
+          checkstyle_config: "google_checks.xml"
