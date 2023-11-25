@@ -58,9 +58,7 @@ jobs:
       ## Build and ESLint
       ###########################################
       - name: Install dependencies
-        run: |
-          cd monorepo/frontend
-          pnpm install
+        run: pnpm --prefix monorepo/frontend install
 #      - name: Build with vite
 #        run: pnpm run build
       - name: eslint with reviewdog
