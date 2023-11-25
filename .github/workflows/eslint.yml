@@ -62,10 +62,13 @@ jobs:
 #      - name: Build with vite
 #        run: pnpm run build
       - name: Install eslint
-        run: pnpm -g install eslint
+        run: |
+          pnpm -g install eslint
+          pwd
+          ls -l
       - name: eslint with reviewdog
         uses: reviewdog/action-eslint@v1.16.1
         with:
-          workdir: frontend
+          workdir: monorepo/frontend
           reporter: github-pr-review
           eslint_flags: "--ext .js,.vue src/"
