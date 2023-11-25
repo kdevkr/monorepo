@@ -57,10 +57,9 @@ jobs:
         run: |
           pnpm install --prefix ./monorepo/frontend
           pnpm run --prefix ./monorepo/frontend build
-          npm -g install eslint
       - name: Run eslint
         uses: reviewdog/action-eslint@v1
         with:
           reporter: github-pr-check
-          workdir: monorepo/frontend/
+          workdir: monorepo/frontend
           eslint_flags: "--ext .js,.vue ./src"
