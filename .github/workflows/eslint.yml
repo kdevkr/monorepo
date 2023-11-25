@@ -60,11 +60,11 @@ jobs:
         run: |
           cd monorepo/frontend
           pnpm install
-      - name: eslint with reviewdog
-        uses: reviewdog/action-setup@v1
+      - uses: reviewdog/action-setup@v1
         with:
           reviewdog_version: latest
-        run: |
+      - name: eslint with reviewdog
+      - run: |
           cd monorepo/frontend
           eslint -f checkstyle --ext .js,.vue src/ | reviewdog -f=checkstyle -name="eslint" -reporter=github-pr-check
 #      - name: Build with vite
