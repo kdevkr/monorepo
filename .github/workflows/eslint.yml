@@ -68,5 +68,5 @@ jobs:
         with:
           reporter: github-pr-check
           eslint_flags: "--ext .js,.vue monorepo/frontend/src/"
-          level: warning
+          level: error
           filter_mode: nofilter
