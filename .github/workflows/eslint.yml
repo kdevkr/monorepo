@@ -62,10 +62,11 @@ jobs:
       - name: Install eslint
         run: npm -g install eslint
       - name: eslint with reviewdog
-        uses: reviewdog/action-eslint@v1
+        uses: reviewdog/action-setup@v1
         with:
-          reporter: github-pr-check
-          eslint_flags: "--ext .js,.vue monorepo/frontend/src/"
+          reviewdog_version: latest
+        run: |
+          eslint -f checkstyle --ext .js,.vue monorepo/frontend/src/ | reviewdog -f=checkstyle -name="eslint" -reporter=github-pr-check
 #      - name: Build with vite
 #        run: |
 #          cd monorepo/frontend
