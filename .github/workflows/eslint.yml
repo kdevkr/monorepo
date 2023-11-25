@@ -62,7 +62,7 @@ jobs:
 #      - name: Build with vite
 #        run: pnpm run build
       - name: Install eslint
-        run: npm -g install eslint
+        run: pnpm -g install eslint
       - name: eslint with reviewdog
         uses: reviewdog/action-eslint@v1
         with:
