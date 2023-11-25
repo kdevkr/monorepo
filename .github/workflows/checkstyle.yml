@@ -42,7 +42,7 @@ jobs:
           cache: "gradle"
       - name: Build with Gradle
         run: |
-          cd backend/
+          cd monorepo/backend/
           chmod +x ./gradlew
           ./gradlew build -x test
 
