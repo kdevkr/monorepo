@@ -66,6 +66,6 @@ jobs:
       - name: eslint with reviewdog
         uses: reviewdog/action-eslint@v1
         with:
-          workdir: ./monorepo/frontend
+          workdir: ./monorepo
           reporter: github-pr-check
-          eslint_flags: "src/"
+          eslint_flags: "frontend/src/"
