@@ -28,7 +28,7 @@ jobs:
         run: |
           git submodule update --init monorepo
           cd monorepo/
-          git checkout ${GITHUB_REF##*/}
+          git checkout ${{ github.event.pull_request.head.sha }}
 
       ###########################################
       ## Java
