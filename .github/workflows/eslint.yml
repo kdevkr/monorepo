@@ -65,7 +65,6 @@ jobs:
       - name: install eslint
         run: |
           cd ./monorepo/frontend
-          pnpm -g install eslint
           pwd
           ls -l
       - name: eslint with reviewdog
