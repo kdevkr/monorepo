@@ -78,4 +78,4 @@ jobs:
           eslint_flags: "./monorepo/frontend/src --ext .js,.vue"
           filter_mode: file
       - name: Build with vite
-        run: pnpm run build
+        run: pnpm run --prefix monorepo/frontend build
