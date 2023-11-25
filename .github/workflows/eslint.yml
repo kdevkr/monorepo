@@ -36,6 +36,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{matrix.node}}
+          cache: 'pnpm'
       - uses: pnpm/action-setup@v2
         with:
           version: 8
@@ -61,11 +62,6 @@ jobs:
           pnpm install
 #      - name: Build with vite
 #        run: pnpm run build
-      - name: Install eslint
-        run: |
-          pnpm -g install eslint
-          pwd
-          ls -l
       - name: eslint with reviewdog
         uses: reviewdog/action-eslint@v1.16.1
         with:
