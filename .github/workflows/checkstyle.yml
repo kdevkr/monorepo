@@ -51,4 +51,4 @@ jobs:
           workdir: ./monorepo/backend/
           reporter: "github-pr-check"
           tool_name: "reviewdog"
-          checkstyle_config: "google_checks.xml"
+          checkstyle_config: "sun_checks.xml"
