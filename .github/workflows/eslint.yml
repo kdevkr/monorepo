@@ -56,17 +56,14 @@ jobs:
       ###########################################
       ## Build and ESLint
       ###########################################
+      - uses: reviewdog/action-setup@v1
+        with:
+          reviewdog_version: latest
       - name: Install dependencies
         run: |
           cd monorepo/frontend
           pnpm install
-      - uses: reviewdog/action-setup@v1
-        with:
-          reviewdog_version: latest
-      - name: eslint with reviewdog
-      - run: |
-          cd monorepo/frontend
-          eslint -f checkstyle --ext .js,.vue src/ | reviewdog -f=checkstyle -name="eslint" -reporter=github-pr-check
+          eslint --ext .js,.vue -f checkstyle src/ | reviewdog -f=checkstyle -name="eslint" -reporter=github-pr-check
 #      - name: Build with vite
 #        run: |
 #          cd monorepo/frontend
