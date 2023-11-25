@@ -1,8 +1,9 @@
 name: PR Status Check
 
 on:
-  workflow_dispatch:
   pull_request:
+    branches:
+      - main
 
 jobs:
   eslint:
@@ -59,14 +60,13 @@ jobs:
         run: |
           cd monorepo/frontend
           pnpm install
-      - name: Install eslint
-        run: npm -g install eslint
       - name: eslint with reviewdog
         uses: reviewdog/action-setup@v1
         with:
           reviewdog_version: latest
         run: |
-          eslint -f checkstyle --ext .js,.vue monorepo/frontend/src/ | reviewdog -f=checkstyle -name="eslint" -reporter=github-pr-check
+          cd monorepo/frontend
+          eslint -f checkstyle --ext .js,.vue src/ | reviewdog -f=checkstyle -name="eslint" -reporter=github-pr-check
 #      - name: Build with vite
 #        run: |
 #          cd monorepo/frontend
