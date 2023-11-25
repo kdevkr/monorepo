@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: kdevkr/platform
-          token: ${{ secrets.PLATFORM_TOKEN }}
+          token: ${{ secrets.PLATFORM_TOKEN || github.token }}
           ref: main
       - name: Checkout submodules
         run: |
