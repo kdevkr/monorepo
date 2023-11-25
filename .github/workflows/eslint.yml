@@ -63,4 +63,4 @@ jobs:
         with:
           reporter: github-pr-check
 #          workdir: monorepo/frontend
-          eslint_flags: "--ext .js,.vue ./src"
+          eslint_flags: "--ext .js,.vue ./frontend/src"
