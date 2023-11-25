@@ -61,6 +61,8 @@ jobs:
         run: pnpm --prefix monorepo/frontend install
 #      - name: Build with vite
 #        run: pnpm run build
+      - name: install eslint
+        run: pnpm -g install eslint
       - name: eslint with reviewdog
         uses: reviewdog/action-eslint@v1.18.0
         with:
