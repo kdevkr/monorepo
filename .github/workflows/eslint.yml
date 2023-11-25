@@ -56,7 +56,7 @@ jobs:
       - name: Install dependencies
         run: |
           pnpm install --prefix ./monorepo/frontend
-          pnpm run build --prefix ./monorepo/frontend
+          pnpm run --prefix ./monorepo/frontend build
           npm -g install eslint
       - name: Run eslint
         uses: reviewdog/action-eslint@v1
