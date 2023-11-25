@@ -66,6 +66,5 @@ jobs:
       - name: eslint with reviewdog
         uses: reviewdog/action-eslint@v1.18.0
         with:
-          workdir: monorepo/frontend
           reporter: github-pr-review
-          eslint_flags: "--ext .js,.vue src/"
+          eslint_flags: "-c monorepo/frontend/.eslintrc.cjs --ext .js,.vue monorepo/frontend/src/"
