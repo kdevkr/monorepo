@@ -6,8 +6,8 @@ on:
       - main
 
 jobs:
-  checks:
-    name: Checks:checkstyle
+  checkstyle:
+    name: checkstyle
     runs-on: ubuntu-latest # ubuntu-22.04
 
     strategy:
