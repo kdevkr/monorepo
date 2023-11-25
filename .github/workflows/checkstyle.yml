@@ -48,16 +48,7 @@ jobs:
         uses: nikitasavinov/checkstyle-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          workdir: monorepo/backend/
+          workdir: ./monorepo/backend/
           reporter: "github-pr-check"
           tool_name: "reviewdog"
           checkstyle_config: "google_checks.xml"
-
-      ###########################################
-      ## Build
-      ###########################################
-      - name: Build with Gradle
-        run: |
-          cd monorepo/backend/
-          chmod +x ./gradlew
-          ./gradlew build -x test
