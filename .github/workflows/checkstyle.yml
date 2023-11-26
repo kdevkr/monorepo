@@ -45,11 +45,11 @@ jobs:
       ## Checkstyle
       ###########################################
       - name: Run checkstyle
-        uses: nikitasavinov/checkstyle-action@master
+        uses: dbelyaev/action-checkstyle@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           workdir: ./monorepo/backend/
-          reporter: "github-pr-check"
+          reporter: github-pr-review
           tool_name: "reviewdog"
           checkstyle_config: "sun_checks.xml"
           level: warning
