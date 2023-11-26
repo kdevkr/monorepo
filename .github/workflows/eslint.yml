@@ -73,7 +73,7 @@ jobs:
           reviewdog -version
           cd monorepo/frontend
           pnpm install
-          eslint -f rdjson ./frontend/src | reviewdog -f=rdjson -reporter=github-pr-check
+          eslint -f rdjson ./src/ | reviewdog -f=rdjson -reporter=github-pr-check
 #      - name: Install dependencies
 #        run: pnpm --prefix monorepo/frontend install
 #      - name: eslint with reviewdog
