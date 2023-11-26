@@ -1,15 +1,9 @@
-name: PR Status Check
+name: check:eslint
 
 on:
   pull_request:
     branches:
       - main
-
-permissions:
-  contents: read
-  checks: write
-  pull-requests: write
-  issues: write
 
 jobs:
   eslint:
@@ -26,15 +20,6 @@ jobs:
       ###########################################
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          repository: kdevkr/platform
-          token: ${{ secrets.PLATFORM_TOKEN }}
-          ref: main
-      - name: Checkout submodules
-        run: |
-          git submodule update --init monorepo
-          cd monorepo/
-          git checkout ${{ github.event.pull_request.head.sha }}
 
       ###########################################
       ## Set up Node
@@ -49,7 +34,7 @@ jobs:
         with:
           node-version: ${{matrix.node}}
           cache: 'pnpm'
-          cache-dependency-path: ./monorepo/frontend/pnpm-lock.yaml
+          cache-dependency-path: ./frontend/pnpm-lock.yaml
       - name: Get pnpm store directory
         shell: bash
         run: |
@@ -63,7 +48,7 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       ###########################################
-      ## Build and ESLint
+      ## ESLint
       ###########################################
       - uses: reviewdog/action-setup@v1
       - name: Run reviewdog
@@ -71,13 +56,6 @@ jobs:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           reviewdog -version
-          cd monorepo/frontend
+          cd frontend/
           pnpm install
           npx --no-install -c "eslint -f rdjson ./src/" | reviewdog -f=rdjson -reporter=github-pr-check
-#      - name: Install dependencies
-#        run: pnpm --prefix monorepo/frontend install
-#      - name: eslint with reviewdog
-#        uses: reviewdog/action-eslint@v1
-#        with:
-#          reporter: github-pr-check
-#          eslint_flags: "--ext .js,.vue ./frontend/src"
