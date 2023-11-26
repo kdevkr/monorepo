@@ -19,6 +19,9 @@ devDependencies:
   eslint-config-prettier:
     specifier: ^9.0.0
     version: 9.0.0(eslint@8.54.0)
+  eslint-formatter-rdjson:
+    specifier: ^1.0.6
+    version: 1.0.6
   eslint-plugin-vue:
     specifier: ^9.18.1
     version: 9.18.1(eslint@8.54.0)
@@ -584,6 +587,10 @@ packages:
       eslint: '>=7.0.0'
     dependencies:
       eslint: 8.54.0
+    dev: true
+
+  /eslint-formatter-rdjson@1.0.6:
+    resolution: {integrity: sha512-RiBsXfe340Mof5pVkg7u0UXiLTm3cRhF9XYUf4hVHEzpIwk5jAIbkifugPpn51CeNxj00RkJU1MfJYoHbUwLFg==}
     dev: true
 
   /eslint-plugin-vue@9.18.1(eslint@8.54.0):

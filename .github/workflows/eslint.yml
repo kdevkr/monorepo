@@ -65,15 +65,17 @@ jobs:
       ###########################################
       ## Build and ESLint
       ###########################################
-      - name: Install dependencies
-        run: pnpm --prefix monorepo/frontend install
-      - name: install eslint
-        run: |
-          pnpm install -g eslint
-          ls -l .git
-          ls -l ./monorepo/.git
-      - name: eslint with reviewdog
-        uses: reviewdog/action-eslint@v1
-        with:
-          reporter: github-pr-check
-          eslint_flags: "--ext .js,.vue ./frontend/src"
+      - uses: reviewdog/action-setup@v1
+      - run: |
+          reviewdog -version
+          cd monorepo/
+          pnpm --prefix frontend install
+          pnpm -g install eslint
+          eslint -f rdjson ./frontend/src | reviewdog -f=rdjson -reporter=github-pr-check
+#      - name: Install dependencies
+#        run: pnpm --prefix monorepo/frontend install
+#      - name: eslint with reviewdog
+#        uses: reviewdog/action-eslint@v1
+#        with:
+#          reporter: github-pr-check
+#          eslint_flags: "--ext .js,.vue ./frontend/src"
