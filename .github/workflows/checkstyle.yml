@@ -24,13 +24,7 @@ jobs:
 #          repository: kdevkr/platform
 #          token: ${{ secrets.PLATFORM_TOKEN }}
 #          ref: main
-#          path: .
       - uses: actions/checkout@v4
-        with:
-          path: ./monorepo
-      - name: debug
-        run: |
-          ls -l
 #      - name: Checkout submodules
 #        run: |
 #          git submodule update --init monorepo
@@ -57,4 +51,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-check
           checkstyle_config: "sun_checks.xml"
-          workdir: ./monorepo
