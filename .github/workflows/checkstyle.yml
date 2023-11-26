@@ -18,13 +18,13 @@ jobs:
       ###########################################
       ## Checkout
       ###########################################
-#      - name: Checkout repository
-#        uses: actions/checkout@v4
-#        with:
-#          repository: kdevkr/platform
-#          token: ${{ secrets.PLATFORM_TOKEN }}
-#          ref: main
-#          path: .
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          repository: kdevkr/platform
+          token: ${{ secrets.PLATFORM_TOKEN }}
+          ref: main
+          path: .
       - uses: actions/checkout@v4
         with:
           path: ./monorepo
@@ -57,3 +57,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-check
           checkstyle_config: "sun_checks.xml"
+          workdir: ./monorepo
