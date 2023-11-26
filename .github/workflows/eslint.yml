@@ -70,10 +70,10 @@ jobs:
       - name: install eslint
         run: |
           pnpm install -g eslint
-          cd monorepo/
+          ls -l .git
+          ls -l ./monorepo/.git
       - name: eslint with reviewdog
         uses: reviewdog/action-eslint@v1
         with:
           reporter: github-pr-check
           eslint_flags: "--ext .js,.vue ./frontend/src"
-          workdir: ./monorepo
