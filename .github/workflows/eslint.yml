@@ -26,15 +26,15 @@ jobs:
       ###########################################
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          repository: kdevkr/platform
-          token: ${{ secrets.PLATFORM_TOKEN }}
-          ref: main
-      - name: Checkout submodules
-        run: |
-          git submodule update --init monorepo
-          cd monorepo/
-          git checkout ${{ github.event.pull_request.head.sha }}
+#        with:
+#          repository: kdevkr/platform
+#          token: ${{ secrets.PLATFORM_TOKEN }}
+#          ref: main
+#      - name: Checkout submodules
+#        run: |
+#          git submodule update --init monorepo
+#          cd monorepo/
+#          git checkout ${{ github.event.pull_request.head.sha }}
 
       ###########################################
       ## Set up Node
@@ -66,15 +66,12 @@ jobs:
       ## Build and ESLint
       ###########################################
       - name: Install dependencies
-        run: pnpm --prefix monorepo/frontend install
+        run: pnpm --prefix frontend install
       - name: install eslint
-        run: |
-          cd ./monorepo/frontend
-          pnpm install -g eslint
+        run: pnpm install -g eslint
       - name: eslint with reviewdog
         uses: reviewdog/action-eslint@v1
         with:
           reporter: github-pr-check
-          eslint_flags: "--ext .js,.vue ./monorepo/frontend/src"
+          eslint_flags: "--ext .js,.vue ./frontend/src"
           level: error
-          workdir: '.'
