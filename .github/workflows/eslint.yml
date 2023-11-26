@@ -28,7 +28,7 @@ jobs:
         with:
           version: 8
           run_install: false
-          package_json_file: './monorepo/frontend/package.json'
+          package_json_file: './frontend/package.json'
       - name: Set up Node ${{ matrix.node }}
         uses: actions/setup-node@v4
         with:
@@ -50,12 +50,12 @@ jobs:
       ###########################################
       ## ESLint
       ###########################################
-      - uses: reviewdog/action-setup@v1
-      - name: Run reviewdog
-        env:
-          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          reviewdog -version
-          cd frontend/
-          pnpm install
-          npx --no-install -c "eslint -f rdjson ./src/" | reviewdog -f=rdjson -reporter=github-pr-check
+      - name: Install dependencies
+        run: pnpm --prefix frontend install
+      - name: install eslint
+        run: pnpm install -g eslint
+      - name: eslint with reviewdog
+        uses: reviewdog/action-eslint@v1
+        with:
+          reporter: github-pr-check
+          eslint_flags: "--ext .js,.vue ./frontend/src"
